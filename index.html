@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tazas Personalizadas - Unionistas CF</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    <style>
+        :root {
+            --primary: #8B0000; /* Rojo oscuro - Unionistas CF */
+            --primary-dark: #5a0000;
+            --primary-light: #b30000;
+            --accent: #FFD700; /* Dorado */
+            --white: #ffffff;
+            --light-bg: #f8f9fa;
+            --text-dark: #343a40;
+            --text-light: #6c757d;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-image {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .club-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .contact-header {
+            font-size: 0.9rem;
+            color: var(--white);
+        }
+
+        .contact-header a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .contact-header a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: var(--white);
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.95;
+        }
+
+        .personalization-badge {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--primary-dark);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 1rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--primary-dark);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+            background-color: var(--accent);
+        }
+
+        /* Notes Section */
+        .notes-section {
+            background-color: var(--white);
+            padding: 3rem 0;
+        }
+
+        .notes-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .note-card {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+        }
+
+        .note-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .note-card p {
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 4rem 0;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(139, 0, 0, 0.15);
+        }
+
+        .product-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+            background-color: #f5f5f5;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-info h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-info .capacity {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .price-unit {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .personalization-tag {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--primary-dark);
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 10px;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        .view-details {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .view-details:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Product Detail Modal */
+        .product-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            border-radius: 12px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.2rem;
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+        }
+
+        .modal-images {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .carousel-container {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 8px;
+            background-color: var(--light-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-slide.active {
+            display: flex;
+        }
+
+        .carousel-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            z-index: 5;
+        }
+
+        .carousel-button:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .carousel-prev {
+            left: 15px;
+        }
+
+        .carousel-next {
+            right: 15px;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 1rem;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ddd;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .carousel-dot.active {
+            background-color: var(--primary);
+        }
+
+        .modal-product-info h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .modal-product-info .capacity {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .modal-product-info p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .modal-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .modal-price-unit {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .modal-contact-cta {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .modal-contact-cta h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-contact-cta p {
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-section p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-logo .logo-text {
+            color: var(--white);
+        }
+
+        .footer-contact {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 1rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .notes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .modal-body {
+                padding: 1.5rem;
+            }
+
+            .carousel-container {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 3rem 0;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .modal-body {
+                padding: 1rem;
+            }
+
+            .carousel-container {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-text">Merchandream</div>
+                <div class="club-name">Unionistas CF</div>
+            </div>
+            <div class="contact-header">
+                <p>Email: direccion.general@merchandream.es | Tel: +34 605 195 744</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Tazas Personalizadas Unionistas CF</h1>
+            <p>Descubre nuestra exclusiva colección de tazas personalizadas para los mayores fans del Unionistas CF. Perfectas para regalar a socios, jugadores o para tu colección personal.</p>
+            <div class="personalization-badge">¡Totalmente personalizables con el escudo del club!</div>
+        </div>
+    </section>
+
+    <!-- Notes Section -->
+    <section class="notes-section">
+        <div class="container notes-container">
+            <h2 class="section-title">Información Importante</h2>
+            <div class="notes-grid">
+                <div class="note-card">
+                    <h3>Plazo de Entrega</h3>
+                    <p>15 días desde la aprobación del diseño</p>
+                </div>
+                <div class="note-card">
+                    <h3>Precios</h3>
+                    <p>Sin IVA y ya incluye el precio de la sublimación</p>
+                </div>
+                <div class="note-card">
+                    <h3>Forma de Pago</h3>
+                    <p>Al contado en su totalidad para comenzar con el trámite</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="productos">
+        <div class="container">
+            <h2 class="section-title">Nuestra Colección de Tazas</h2>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <h2>¿Te interesa algún modelo?</h2>
+            <p>Contacta con nosotros para recibir información sobre precios, cantidades mínimas y opciones de personalización. Trabajamos directamente con el club para crear productos oficiales de máxima calidad.</p>
+            <a href="mailto:direccion.general@merchandream.es?subject=Consulta sobre Tazas Unionistas CF&body=Hola, me interesa recibir información sobre las tazas personalizadas para Unionistas CF.%0D%0A%0D%0AEstoy interesado en el siguiente modelo:%0D%0A%0D%0ACantidad aproximada:%0D%0A%0D%0AInformación adicional:%0D%0A" class="cta-button">Solicitar Información</a>
+        </div>
+    </section>
+
+    <!-- Product Detail Modal -->
+    <div class="product-modal" id="productModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-text">Merchandream</div>
+                </div>
+                <div class="footer-contact">
+                    <p>Email: direccion.general@merchandream.es | Tel: +34 605 195 744</p>
+                    <p>Proveedor oficial de merchandising para Unionistas CF</p>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 Merchandream. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Product data for Unionistas CF
+        const products = [
+            {
+                id: 1,
+                name: "Kantol",
+                description: "Metal 7.9cm | 72g por Unidad | Caja Master 52x46x20cm 6kg",
+                capacity: "380ml",
+                price: 3,
+                images: [
+                    "./assets/01.Kantol/Pic01.png",
+                    "./assets/01.Kantol/Pic02.png",
+                    "./assets/01.Kantol/Pic03.png",
+                    "./assets/01.Kantol/Pic05.png",
+                    "./assets/01.Kantol/Caracteristicas.png"
+                ]
+            },
+            {
+                id: 2,
+                name: "Werdan",
+                description: "Cerámica 9.6cm | 320g por Unidad | Caja Master 48x33x28cm 14kg",
+                capacity: "350ml",
+                price: 3.10,
+                images: [
+                    "./assets/02.Wesdarm/Pic01.png",
+                    "./assets/02.Wesdarm/Pic02.png",
+                    "./assets/02.Wesdarm/Pic03.png",
+                    "./assets/02.Wesdarm/Pic04.png",
+                    "./assets/02.Wesdarm/Pic05.png",
+                    "./assets/02.Wesdarm/Caracteristicas.png"
+                ]
+            },
+            {
+                id: 3,
+                name: "Harnet",
+                description: "Cerámica 9.6cm | 320g por Unidad | Caja Master 48x32x27.5cm 13kg",
+                capacity: "350ml",
+                price: 3.20,
+                images: [
+                    "./assets/03.Harnet/Pic01.png",
+                    "./assets/03.Harnet/Pic02.png",
+                    "./assets/03.Harnet/Pic03.png",
+                    "./assets/03.Harnet/Caracteristicas.png"
+                ]
+            },
+            {
+                id: 4,
+                name: "Kaffir",
+                description: "Cerámica 10cm | 330g por Unidad | Caja Master 53.5x30x35cm 14kg",
+                capacity: "350ml",
+                price: 3.90,
+                images: [
+                    "./assets/04.Kaffir/Pic01.png",
+                    "./assets/04.Kaffir/Pic02.png",
+                    "./assets/04.Kaffir/Pic03.png",
+                    "./assets/04.Kaffir/Caracteristicas.png"
+                ]
+            },
+            {
+                id: 5,
+                name: "Amira",
+                description: "Cristal 9.6cm | 338g por Unidad | Caja Master 46x32.3x26.5cm 12.7kg",
+                capacity: "350ml",
+                price: 3.20,
+                images: [
+                    "./assets/05.Amira/Pic01.png",
+                    "./assets/05.Amira/Pic02.png",
+                    "./assets/05.Amira/Pic03.png",
+                    "./assets/05.Amira/Pic05.png",
+                    "./assets/05.Amira/Pic06.png",
+                    "./assets/05.Amira/Pic07.png",
+                    "./assets/05.Amira/Caracteristicas.png"
+                ]
+            },
+            {
+                id: 6,
+                name: "Nala",
+                description: "Cerámica/Corcho 10.2cm | 340g por Unidad | Caja Master 47.5x38.5x28.5cm 14.8kg",
+                capacity: "350ml",
+                price: 3.80,
+                images: [
+                    "./assets/06.Nala/Pic01.png",
+                    "./assets/06.Nala/Pic02.png",
+                    "./assets/06.Nala/Pic03.png",
+                    "./assets/06.Nala/Pic04.png",
+                    "./assets/06.Nala/Pic05.png",
+                    "./assets/06.Nala/Caracteristicas.png"
+                ]
+            },
+            {
+                id: 7,
+                name: "Roset",
+                description: "Cerámica/Corcho 11cm | 420g por Unidad | Caja Master 51x38x30.5cm 16kg",
+                capacity: "420ml",
+                price: 4.30,
+                images: [
+                    "./assets/07.Roset/Pic01.png",
+                    "./assets/07.Roset/Pic02.png",
+                    "./assets/07.Roset/Pic03.png"
+                ]
+            },
+            {
+                id: 8,
+                name: "Beesbur",
+                description: "Acero Inoxidable 8cm | 113g por Unidad | Caja Master 49x28x32cm 14kg",
+                capacity: "220ml",
+                price: 4.30,
+                images: [
+                    "./assets/08.Beesbur/Pic01.png",
+                    "./assets/08.Beesbur/Pic02.png",
+                    "./assets/08.Beesbur/Pic03.png",
+                    "./assets/08.Beesbur/Pic04.png",
+                    "./assets/08.Beesbur/Pic05.png",
+                    "./assets/08.Beesbur/Pic06.png",
+                    "./assets/08.Beesbur/Caracteristicas.png"
+                ]
+            }
+        ];
+
+        // DOM Elements
+        const productsGrid = document.getElementById('productsGrid');
+        const productModal = document.getElementById('productModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalBody = document.getElementById('modalBody');
+
+        // Carousel state
+        let currentSlide = 0;
+
+        // Format price to show two decimal places
+        function formatPrice(price) {
+            return price.toFixed(2);
+        }
+
+        // Initialize products
+        function initProducts() {
+            productsGrid.innerHTML = '';
+
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.images[0]}" alt="${product.name}">
+                    </div>
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <div class="capacity">Capacidad: ${product.capacity}</div>
+                        <p>${product.description}</p>
+                        <div class="price">
+                            ${formatPrice(product.price)}€
+                            <span class="price-unit">/unidad</span>
+                        </div>
+                        <div class="personalization-tag">Personalizable</div>
+                        <a href="#" class="view-details" data-id="${product.id}">Ver Detalles</a>
+                    </div>
+                `;
+
+                productsGrid.appendChild(productCard);
+            });
+
+            // Add event listeners to view details buttons
+            document.querySelectorAll('.view-details').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    const product = products.find(p => p.id === productId);
+                    if (product) {
+                        openProductModal(product);
+                    }
+                });
+            });
+        }
+
+        // Open product modal with carousel
+        function openProductModal(product) {
+            currentSlide = 0;
+            modalBody.innerHTML = `
+                <div class="modal-images">
+                    <div class="carousel-container">
+                        ${product.images.map((image, index) => `
+                            <div class="carousel-slide ${index === 0 ? 'active' : ''}">
+                                <img src="${image}" alt="${product.name}">
+                            </div>
+                        `).join('')}
+                        <button class="carousel-button carousel-prev">&#10094;</button>
+                        <button class="carousel-button carousel-next">&#10095;</button>
+                    </div>
+                    <div class="carousel-indicators">
+                        ${product.images.map((_, index) => `
+                            <div class="carousel-dot ${index === 0 ? 'active' : ''}" data-index="${index}"></div>
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="modal-product-info">
+                    <h3>${product.name}</h3>
+                    <div class="capacity">Capacidad: ${product.capacity}</div>
+                    <div class="modal-price">
+                        ${formatPrice(product.price)}€
+                        <span class="modal-price-unit">/unidad</span>
+                    </div>
+                    <p>${product.description}</p>
+                    <div class="personalization-tag">¡Producto personalizable con el escudo del Unionistas CF!</div>
+                </div>
+                <div class="modal-contact-cta">
+                    <h4>¿Te interesa este modelo?</h4>
+                    <p>Perfecto para regalar a socios, jugadores o para tu colección personal. Contacta con nosotros para recibir información sobre precios, cantidades mínimas y opciones de personalización.</p>
+                    <a href="mailto:direccion.general@merchandream.es?subject=Consulta sobre ${product.name} - Unionistas CF&body=Hola, me interesa recibir información sobre la ${product.name} para Unionistas CF.%0D%0A%0D%0ACantidad aproximada:%0D%0A%0D%0AInformación adicional:%0D%0A" class="cta-button">Solicitar Información</a>
+                </div>
+            `;
+
+            // Add event listeners for carousel
+            const prevButton = modalBody.querySelector('.carousel-prev');
+            const nextButton = modalBody.querySelector('.carousel-next');
+            const dots = modalBody.querySelectorAll('.carousel-dot');
+
+            prevButton.addEventListener('click', () => changeSlide(-1, product.images.length));
+            nextButton.addEventListener('click', () => changeSlide(1, product.images.length));
+
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const index = parseInt(dot.getAttribute('data-index'));
+                    goToSlide(index, product.images.length);
+                });
+            });
+
+            productModal.style.display = 'flex';
+        }
+
+        // Change slide in carousel
+        function changeSlide(direction, totalSlides) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateCarousel(totalSlides);
+        }
+
+        // Go to specific slide
+        function goToSlide(index, totalSlides) {
+            currentSlide = index;
+            updateCarousel(totalSlides);
+        }
+
+        // Update carousel display
+        function updateCarousel(totalSlides) {
+            const slides = modalBody.querySelectorAll('.carousel-slide');
+            const dots = modalBody.querySelectorAll('.carousel-dot');
+
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            productModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        productModal.addEventListener('click', (e) => {
+            if (e.target === productModal) {
+                productModal.style.display = 'none';
+            }
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', initProducts);
+    </script>
+</body>
+</html>
